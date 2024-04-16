@@ -28,3 +28,8 @@ func _physics_process(delta):
 	velocity.x = direction * SPEED * delta
 
 	move_and_slide()
+
+
+func _on_anim_animation_finished(anim_name):
+	if anim_name == "hurt":
+		queue_free()
