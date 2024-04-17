@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwuo0vwax7q4a"]
+[gd_scene load_steps=27 format=3 uid="uid://dwuo0vwax7q4a"]
 
 [ext_resource type="Texture2D" uid="uid://52uhrnfl1ji4" path="res://assets/Seasonal Tilesets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_7ku60"]
 [ext_resource type="Script" path="res://scripts/world_01.gd" id="1_bdbwr"]
@@ -13,6 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://bt3kh3xjw4o4l" path="res://assets/Seasonal Tilesets/Seasonal Tilesets/1 - Grassland/Background parts/2 - Hills.png" id="7_fv6nv"]
 [ext_resource type="Texture2D" uid="uid://djnv1whu2g5d1" path="res://assets/Seasonal Tilesets/Seasonal Tilesets/1 - Grassland/Background parts/1 - Foreground_scenery.png" id="8_y4jdu"]
 [ext_resource type="PackedScene" uid="uid://1pnac64y4ipj" path="res://prefabs/moving_platform.tscn" id="10_tj3ac"]
+[ext_resource type="Texture2D" uid="uid://ma8v5f08kf05" path="res://assets/mini_ui_buttons/ui_buttons_arrow_left_NORMAL.png" id="14_75yba"]
+[ext_resource type="Texture2D" uid="uid://c70h8qrsxsch2" path="res://assets/mini_ui_buttons/ui_buttons_arrow_left_PRESSED.png" id="15_cs5uo"]
+[ext_resource type="Texture2D" uid="uid://pgbt8yawg54s" path="res://assets/mini_ui_buttons/ui_buttons_arrow_right_NORMAL.png" id="16_oqbu3"]
+[ext_resource type="Texture2D" uid="uid://d0nie66iup07w" path="res://assets/mini_ui_buttons/ui_buttons_arrow_right_PRESSED.png" id="17_o6kpd"]
+[ext_resource type="Texture2D" uid="uid://bukaxa0wao1ig" path="res://assets/mini_ui_buttons/ui_buttons_arrow_up_NORMAL.png" id="18_hwo5p"]
+[ext_resource type="Texture2D" uid="uid://bfy772e56rujq" path="res://assets/mini_ui_buttons/ui_buttons_arrow_up_PRESSED.png" id="19_fwmgd"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_5waqn"]
 tile_data = PackedInt32Array(0, 65537, 1)
@@ -303,7 +309,7 @@ position = Vector2(556, 184)
 
 [node name="05" type="ParallaxLayer" parent="BG"]
 position = Vector2(0, -90)
-motion_mirroring = Vector2(432, 0)
+motion_mirroring = Vector2(432, 288)
 
 [node name="texture" type="Sprite2D" parent="BG/05"]
 scale = Vector2(1.5, 1.5)
@@ -353,7 +359,6 @@ texture = ExtResource("8_y4jdu")
 centered = false
 
 [node name="Camera" type="Camera2D" parent="."]
-visible = false
 limit_left = 0
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -363,3 +368,26 @@ drag_left_margin = 0.5
 drag_right_margin = 0.5
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="controls" type="CanvasLayer" parent="."]
+
+[node name="ui_left" type="TouchScreenButton" parent="controls"]
+position = Vector2(15, 123)
+texture_normal = ExtResource("14_75yba")
+texture_pressed = ExtResource("15_cs5uo")
+action = "ui_left"
+visibility_mode = 1
+
+[node name="ui_right" type="TouchScreenButton" parent="controls"]
+position = Vector2(56, 123)
+texture_normal = ExtResource("16_oqbu3")
+texture_pressed = ExtResource("17_o6kpd")
+action = "ui_right"
+visibility_mode = 1
+
+[node name="ui_jump" type="TouchScreenButton" parent="controls"]
+position = Vector2(280, 123)
+texture_normal = ExtResource("18_hwo5p")
+texture_pressed = ExtResource("19_fwmgd")
+action = "ui_accept"
+visibility_mode = 1

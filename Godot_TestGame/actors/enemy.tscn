@@ -208,6 +208,7 @@ position = Vector2(0, -4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3psxq")
 one_way_collision_margin = 0.0
+debug_color = Color(0.996078, 0, 0.215686, 0.419608)
 
 [node name="hitbox" parent="." instance=ExtResource("6_r0pi7")]
 
