@@ -309,7 +309,7 @@ position = Vector2(556, 184)
 [node name="BG" type="ParallaxBackground" parent="."]
 
 [node name="05" type="ParallaxLayer" parent="BG"]
-position = Vector2(0, -90)
+position = Vector2(1, -90)
 motion_mirroring = Vector2(432, 288)
 
 [node name="texture" type="Sprite2D" parent="BG/05"]

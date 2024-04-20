@@ -93,8 +93,9 @@ func _set_state():
 func _on_head_collieder_body_entered(body):
 	if body.has_method("break_sprite"):
 		body.hitpoints -= 1
-		if body.hitpoints < 1:
+		if body.hitpoints < 0:
 			body.break_sprite()
 		else:
-			body.animation_player.play("hit")
+			body.animation_player.play("hit_flash")
+			body.create_coin()
 			

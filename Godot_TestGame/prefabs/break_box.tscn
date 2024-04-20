@@ -1,10 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://bf0nmn4pv40hi"]
+[gd_scene load_steps=10 format=3 uid="uid://bf0nmn4pv40hi"]
 
 [ext_resource type="Script" path="res://scripts/break_box.gd" id="1_5eiuv"]
 [ext_resource type="Texture2D" uid="uid://bs2p1puaf1137" path="res://assets/Seasonal Tilesets/Seasonal Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="1_r1jan"]
+[ext_resource type="Shader" path="res://shaders/hit_flash.gdshader" id="2_6mhsc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcsfe"]
 size = Vector2(16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jevea"]
+resource_local_to_scene = true
+shader = ExtResource("2_6mhsc")
+shader_parameter/active = false
 
 [sub_resource type="Animation" id="Animation_t5mic"]
 length = 0.001
@@ -31,6 +37,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("texture:material:shader_parameter/active")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_t8ycw"]
@@ -61,10 +79,39 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.756863, 0, 0.207843, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_h8wap"]
+resource_name = "hit_flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.5), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k5lev"]
 _data = {
 "RESET": SubResource("Animation_t5mic"),
-"hit": SubResource("Animation_t8ycw")
+"hit": SubResource("Animation_t8ycw"),
+"hit_flash": SubResource("Animation_h8wap")
 }
 
 [node name="break_box" type="CharacterBody2D"]
@@ -77,6 +124,7 @@ pieces = PackedStringArray("res://assets/brick-pieces-20240418T162928Z-001/brick
 shape = SubResource("RectangleShape2D_wcsfe")
 
 [node name="texture" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_jevea")
 texture = ExtResource("1_r1jan")
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
@@ -85,3 +133,5 @@ region_rect = Rect2(16, 16, 16, 16)
 libraries = {
 "": SubResource("AnimationLibrary_k5lev")
 }
+
+[node name="spawn_coin" type="Marker2D" parent="."]
